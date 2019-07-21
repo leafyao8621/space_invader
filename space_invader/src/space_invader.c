@@ -62,10 +62,10 @@ void proceed(int rcnt) {
                     score += 1 + !(j->typ);
                     bullet_end--;
                     *(del_end++) = *i;
-                    memmove(i, i + 1, 99);
+                    memmove(i, i + 1, bullet_end - i);
                     enemy_end--;
                     *(del_end++) = *j;
-                    memmove(j, j + 1, 99);
+                    memmove(j, j + 1, enemy_end - j);
                 }
             }
         }
@@ -76,7 +76,7 @@ void proceed(int rcnt) {
             }
             bullet_end--;
             *(del_end++) = *i;
-            memmove(i, i + 1, 99);
+            memmove(i, i + 1, bullet_end - i);
         }
         if (i == bullet_end) break;
     }
