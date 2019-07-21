@@ -37,7 +37,7 @@ void gen_enemy(int rcnt) {
     enemy_end->row = rand() % (height - 2) + 2;
     enemy_end->col = width - 1;
     enemy_end->dir = -1;
-    enemy_end->typ = 0;
+    enemy_end->typ = rcnt % 100;
     enemy_end++;
 }
 
@@ -49,6 +49,9 @@ void proceed(int rcnt) {
                 lost = 1;
                 return;
             }
+            if (!(i->typ) && !(rcnt % 30)) {
+                fire(i);
+            }
         }
     }
     for (struct Object* i = bullet; i != bullet_end; i++) {
@@ -56,7 +59,7 @@ void proceed(int rcnt) {
         if (i->dir == 1) {
             for (struct Object* j = enemy; j != enemy_end; j++) {
                 if (j->row == i->row && j->col - i->col <= 1) {
-                    score++;
+                    score += 1 + !(j->typ);
                     bullet_end--;
                     *(del_end++) = *i;
                     memmove(i, i + 1, 99);
@@ -66,7 +69,11 @@ void proceed(int rcnt) {
                 }
             }
         }
-        if (i->col == width - 1) {
+        if (i->col == width - 1 || i->col == 1) {
+            if (i->col == 1 && i->row == ship.row) {
+                lost = 1;
+                return;
+            }
             bullet_end--;
             *(del_end++) = *i;
             memmove(i, i + 1, 99);

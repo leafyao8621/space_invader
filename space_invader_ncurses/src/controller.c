@@ -67,7 +67,6 @@ void main_loop(void) {
         }
         clock_t now = clock();
         if (now - last >= CLOCKS_PER_SEC / 10.0) {
-            rcnt++;
             if (!(rcnt % 50)) {
                 gen_enemy(rcnt);
             }
@@ -75,6 +74,7 @@ void main_loop(void) {
             update(rcnt);
             now = clock();
             last = now;
+            rcnt++;
         }
     }
 }
