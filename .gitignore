@@ -6,4 +6,4 @@ space_invader/*.a
 space_invader_ncurses/.vscode
 space_invader_ncurses/src/*.o
 space_invader_ncurses/*.h
-space_invader_ncurses/*.a
+space_invader_ncurses/space-invader
