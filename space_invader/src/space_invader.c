@@ -62,10 +62,10 @@ void proceed(int rcnt) {
                     score += 1 + !(j->typ);
                     bullet_end--;
                     *(del_end++) = *i;
-                    memmove(i, i + 1, bullet_end - i);
+                    memmove(i, i + 1, (bullet_end - i) * sizeof(struct Object));
                     enemy_end--;
                     *(del_end++) = *j;
-                    memmove(j, j + 1, enemy_end - j);
+                    memmove(j, j + 1, (enemy_end - j) * sizeof(struct Object));
                 }
             }
         }
@@ -76,7 +76,7 @@ void proceed(int rcnt) {
             }
             bullet_end--;
             *(del_end++) = *i;
-            memmove(i, i + 1, bullet_end - i);
+            memmove(i, i + 1, (bullet_end - i) * sizeof(struct Object));
         }
         if (i == bullet_end) break;
     }
