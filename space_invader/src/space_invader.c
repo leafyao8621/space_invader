@@ -54,11 +54,11 @@ void proceed(int rcnt) {
             }
         }
     }
-    for (struct Object* i = bullet; i != bullet_end; i++) {
+    for (struct Object* i = bullet; i < bullet_end; i++) {
         i->col += i->dir;
         if (i->dir == 1) {
-            for (struct Object* j = enemy; j != enemy_end; j++) {
-                if (j->row == i->row && j->col - i->col <= 1) {
+            for (struct Object* j = enemy; j < enemy_end; j++) {
+                if (j->row == i->row && j->col - i->col == 1) {
                     score += 1 + !(j->typ);
                     bullet_end--;
                     *(del_end++) = *i;
@@ -78,7 +78,6 @@ void proceed(int rcnt) {
             *(del_end++) = *i;
             memmove(i, i + 1, (bullet_end - i) * sizeof(struct Object));
         }
-        if (i == bullet_end) break;
     }
     
 }
